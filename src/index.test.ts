@@ -15,23 +15,37 @@ describe("Worker transform stream", () => {
   });
 
   describe("when passing an inexisting operation module", () => {
-    it("should emit an error event", () => {
-      new WorkerTransform(join(__dirname, "INEXISTING")).on("error", err => {
-        expect(err.message).toMatch(/^Cannot find module/);
+    it("should emit an error event", () =>
+      new Promise<void>((resolve, reject) => {
+        new WorkerTransform(join(__dirname, "INEXISTING")).on("error", err => {
+          try {
+            expect(err.message).toMatch(/^Cannot find module/);
+          } catch (err) {
+            return reject(err);
+          }
+
+          resolve();
+        });
+      }));
+  });
+
+  it("should support manual control", () =>
+    new Promise<void>((resolve, reject) => {
+      const transform = new WorkerTransform(
+        join(__dirname, "_add200.sync.test")
+      ).on("data", item => {
+        try {
+          expect(item).toBe(290);
+          transform.end();
+        } catch (err) {
+          return reject(err);
+        }
+
+        resolve();
       });
-    });
-  });
 
-  it("should support manual control", () => {
-    const transform = new WorkerTransform(
-      join(__dirname, "_add200.sync.test")
-    ).on("data", item => {
-      expect(item).toBe(290);
-      transform.end();
-    });
-
-    transform.write(90);
-  });
+      transform.write(90);
+    }));
 
   describe.each([
     ["a synchronous", runSyncTransform],

@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/worker-transform",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Multithread mapping stream",
   "keywords": [
     "multithread",
