@@ -108,7 +108,7 @@ The following values can be passed to the constructor as fields of an optional o
 
 - **agentCount**: the number of worker threads in the pool. **Default**: the number of processors
 
-- **logger**: the a `Logger` interface, as exported by [unified-logging](https://github.com/giancosta86/unified-logging). **Default**: no logger
+- **logger**: a `Logger` interface, as exported by [unified-logging](https://github.com/giancosta86/unified-logging). **Default**: no logger
 
 - **highWaterMark**: if present, passed to the base constructor
 
