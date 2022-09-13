@@ -1,7 +1,7 @@
 import { Transform, TransformCallback } from "node:stream";
 import { cpus } from "node:os";
 import { WorkerAgent } from "@giancosta86/worker-agent";
-import { formatError } from "@giancosta86/format-error";
+import { ErrorParts, formatError } from "@giancosta86/format-error";
 import { Logger } from "@giancosta86/unified-logging";
 
 export type ChunkInput<T> = Readonly<{
@@ -75,9 +75,7 @@ export class WorkerTransform<TInput, TOutput> extends Transform {
           try {
             if (err) {
               this.logger?.warn(
-                `Operation error: ${formatError(err, {
-                  showClass: false
-                })}`
+                `Operation error: ${formatError(err, ErrorParts.Message)}`
               );
             } else {
               const { value, encoding } = output!;

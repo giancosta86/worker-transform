@@ -1,4 +1,4 @@
-import delay from "delay";
+import { setTimeout as delay } from "node:timers/promises";
 import { ChunkInput, ChunkOutput } from ".";
 import { CRASHING_VALUE } from "./_shared.test";
 
