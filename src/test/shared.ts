@@ -2,7 +2,7 @@ import { join } from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { Logger } from "@giancosta86/unified-logging";
-import { WorkerTransform } from "..";
+import { WorkerTransform } from "../WorkerTransform";
 
 export const CRASHING_VALUE = 999;
 export const NULLING_VALUE = 888888;

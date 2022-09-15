@@ -1,6 +1,6 @@
 import { ArrayLogger } from "@giancosta86/unified-logging";
 import { join } from "node:path";
-import { WorkerTransform } from ".";
+import { WorkerTransform } from "./WorkerTransform";
 import {
   CRASHING_VALUE,
   NULLING_VALUE,

@@ -1,5 +1,5 @@
 import { setTimeout as delay } from "node:timers/promises";
-import { ChunkInput, ChunkOutput } from "..";
+import { ChunkInput, ChunkOutput } from "../WorkerTransform";
 import { CRASHING_VALUE, NULLING_VALUE } from "./shared";
 
 async function add500({
