@@ -48,7 +48,10 @@ The public API entirely resides in the root package index, so you shouldn't refe
 
        The `ChunkOutput<TOutput>` type contains the `value` to be produced by the function as well as the related `encoding` - but the latter is optional, because it is meaningful only if the output items are strings
 
-     - `Promise<ChunkOutput<TOutput>>` - if the function is _asynchronous_ - i.e., if it could perform `await` on external conditions or, more generally, if it is designed to return a `Promise`. Again, you need to replace `TOutput` with the type of the items produced by the stream
+       > The result of the function _must_ be a `ChunkOutput<T>` - but such `T` **can** be a _nullable_ type, such as `number | null`!
+       > When the `value` field of the returned `ChunkOutput` is `null`, the stream will just skip it!
+
+     - `Promise<ChunkOutput<TOutput>>` - if the function is _asynchronous_ - i.e., if it could perform `await` on external conditions or, more generally, if it is designed to return a `Promise`. Again, you need to replace `TOutput` with the type of the items produced by the stream - which, again, can be _nullable_
 
    - _throwing errors_ when needed: both errors and rejected promises simply make the stream _ignore_ the related input element
 

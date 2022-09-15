@@ -79,7 +79,10 @@ export class WorkerTransform<TInput, TOutput> extends Transform {
               );
             } else {
               const { value, encoding } = output!;
-              this.push(value, encoding);
+
+              if (value !== null) {
+                this.push(value, encoding);
+              }
             }
           } finally {
             this.notifyAgentAvailability(agent);

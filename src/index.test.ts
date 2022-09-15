@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { WorkerTransform } from ".";
 import {
   CRASHING_VALUE,
+  NULLING_VALUE,
   runAsyncTransform,
   runSyncTransform
 } from "./test/shared";
@@ -93,6 +94,33 @@ describe("Worker transform stream", () => {
       );
 
       expect(operationErrorLogs.length).toBe(8);
+    });
+
+    it("should ignore null output values", async () => {
+      const logger = new ArrayLogger();
+
+      await transform(
+        [
+          20,
+          NULLING_VALUE,
+          4,
+          NULLING_VALUE,
+          80,
+          NULLING_VALUE,
+          50,
+          NULLING_VALUE,
+          NULLING_VALUE,
+          NULLING_VALUE,
+          NULLING_VALUE,
+          NULLING_VALUE,
+          5,
+          7,
+          32
+        ],
+        logger
+      );
+
+      expect(logger.warnMessages.length).toBe(0);
     });
   });
 });

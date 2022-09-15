@@ -5,6 +5,7 @@ import { Logger } from "@giancosta86/unified-logging";
 import { WorkerTransform } from "..";
 
 export const CRASHING_VALUE = 999;
+export const NULLING_VALUE = 888888;
 
 async function runAddingTransform(
   operationModuleBaseName: string,
@@ -13,7 +14,9 @@ async function runAddingTransform(
   logger?: Logger
 ): Promise<void> {
   const expectedItems = sourceItems.flatMap(item =>
-    item != CRASHING_VALUE ? [item + valueAddedByTheOperation] : []
+    item != CRASHING_VALUE && item != NULLING_VALUE
+      ? [item + valueAddedByTheOperation]
+      : []
   );
 
   const actualItems: unknown[] = [];
