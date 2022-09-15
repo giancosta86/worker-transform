@@ -1,5 +1,5 @@
-import { ChunkInput, ChunkOutput } from ".";
-import { CRASHING_VALUE } from "./_shared.test";
+import { ChunkInput, ChunkOutput } from "..";
+import { CRASHING_VALUE } from "./shared";
 
 function add200({ value }: ChunkInput<number>): ChunkOutput<number> {
   if (value == CRASHING_VALUE) {

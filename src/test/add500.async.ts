@@ -1,6 +1,6 @@
 import { setTimeout as delay } from "node:timers/promises";
-import { ChunkInput, ChunkOutput } from ".";
-import { CRASHING_VALUE } from "./_shared.test";
+import { ChunkInput, ChunkOutput } from "..";
+import { CRASHING_VALUE } from "./shared";
 
 async function add500({
   value

@@ -5,11 +5,13 @@ import {
   CRASHING_VALUE,
   runAsyncTransform,
   runSyncTransform
-} from "./_shared.test";
+} from "./test/shared";
 
 describe("Worker transform stream", () => {
   it("should support destruction right after creation", () => {
-    const transform = new WorkerTransform(join(__dirname, "_add200.sync.test"));
+    const transform = new WorkerTransform(
+      join(__dirname, "test", "add200.sync")
+    );
 
     transform.destroy();
   });
@@ -32,7 +34,7 @@ describe("Worker transform stream", () => {
   it("should support manual control", () =>
     new Promise<void>((resolve, reject) => {
       const transform = new WorkerTransform(
-        join(__dirname, "_add200.sync.test")
+        join(__dirname, "test", "add200.sync")
       ).on("data", item => {
         try {
           expect(item).toBe(290);
