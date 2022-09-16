@@ -80,7 +80,7 @@ The public API entirely resides in the root package index, so you shouldn't refe
      await delay(2);
      await delay(6);
 
-     return Promise.resolve({ value: value + 500 });
+     return { value: value + 500 };
    }
 
    export = add500;
