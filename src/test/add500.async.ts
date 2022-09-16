@@ -17,7 +17,7 @@ async function add500({
     return { value: null };
   }
 
-  return Promise.resolve({ value: value + 500 });
+  return { value: value + 500 };
 }
 
 export = add500;
